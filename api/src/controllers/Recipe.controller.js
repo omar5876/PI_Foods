@@ -50,14 +50,45 @@ const getRecipeByName = async(req, res) => {
         let recipesApi = await getRecipesApi()
         let recipesDB = await getRecipesDB()
         let recipeFound = [...recipesApi, ...recipesDB].filter(e => e.title.toLowerCase().includes(name.toLowerCase()))
-        if(!recipeFound.length) return res.send('No encontrado')
+        if(!recipeFound.length) return res.send('Recipe not found')
         res.send(recipeFound)
     } catch (error) {
         console.log(error)
     }
 }
 
+const getRecipeById = async (req, res) => {
+    try {
+        let recipeFound;
+        let {id} = req.params
+        if(/^[0-9A-F]{8}-[0-9A-F]{4}-[4][0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i.test(id)){
+            let recipesDB = await getRecipesDB()
+            recipeFound = recipesDB.find(e => e.id === id)
+            return res.send(recipeFound)
+
+        }
+        else{
+            let recipesApi = await getRecipesApi()
+            recipeFound = recipesApi.find(e => e.id === Number(id))
+            return res.send(recipeFound)
+
+        }
+    } catch (error) {
+        console.log(error)
+        res.send('Recipe not found')
+    }
+}
+
+const createRecipe = (req, res) => {
+    try {
+        
+    } catch (error) {
+        console.log(error)
+        res.send("It haven't created")
+    }
+}
 module.exports = {
     getRecipes,
-    getRecipeByName
+    getRecipeByName,
+    getRecipeById
 }
