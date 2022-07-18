@@ -33,7 +33,6 @@ const getRecipesDB = async () => {
                 id: e.id,
                 name: e.name,
                 image: e.image,
-                dishTypes: e.dishTypes,
                 diets: e.diets.map(e => e.name),
                 summary: e.summary,
                 healthScore: e.healthScore,
