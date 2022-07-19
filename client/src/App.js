@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import CreateRecipe from "./pages/CreateRecipe";
 import DetailRecipe from "./pages/DetailRecipe";
 import Home from "./pages/Home";
+import InitialPage from "./pages/InitialPage";
 import LandingPage from "./pages/LandingPage";
 
 function App() {
@@ -10,6 +11,9 @@ function App() {
     <BrowserRouter>
       <LandingPage>
         <Switch>
+          <Route exact path={'/'}>
+            <InitialPage/>
+            </Route>
           <Route exact path={'/Home'}>
             <Navbar/>
             <Home/>

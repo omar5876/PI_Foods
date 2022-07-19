@@ -1,7 +1,7 @@
 const InitialPage = () => {
     return (
-        <div>
-            Initial Page
-        </div>
+        <button>Go Home</button>
     )
 }
+
+export default InitialPage
