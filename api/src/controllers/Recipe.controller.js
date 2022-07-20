@@ -93,9 +93,9 @@ const getRecipeById = async (req, res) => {
 
 const createRecipe = async (req, res) => {
     try {
-        let {name, summary, healthScore, steps, diets} = req.body
+        let {name, summary, healthScore, image, steps, diets} = req.body
         if(!name || !summary) return res.send('Data is missing')
-        let newRecipe = await Recipe.create({name, summary, healthScore, steps})
+        let newRecipe = await Recipe.create({name, summary, healthScore, image, steps})
         let dietsPromise = await diets.map(async(e) => await Diet.findOne({where:{name: e}}))
         let dietsFinal = await Promise.all(dietsPromise)
         newRecipe.addDiets(dietsFinal)
