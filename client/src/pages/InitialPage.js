@@ -1,6 +1,9 @@
 const InitialPage = () => {
     return (
-        <button>Go Home</button>
+        <div>
+            <h2>Learn about cooking</h2>
+            <button>Enter</button>
+        </div>
     )
 }
 

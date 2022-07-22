@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
         <div className={s.navbarContainer}>
             <div className={s.navbarItems}>
-                <img src={navImage}/> 
+                <img src={navImage} alt="navbarImg"/> 
 
             <ul >
                 <li><Link className={s.navbarLinks} to={'/Home'}>All Recipes</Link></li>
