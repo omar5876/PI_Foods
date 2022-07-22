@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING
     },
     summary: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(1234),
       allowNull: false
     },
     healthScore: {

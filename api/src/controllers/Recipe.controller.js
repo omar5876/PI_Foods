@@ -25,6 +25,7 @@ const getRecipesApi = async () => {
         console.log(error)
     }
 }
+
 const getRecipesDB = async () => {
     try {
         let recipesDB = await Recipe.findAll({include: {model: Diet, attributes: ['name']}})

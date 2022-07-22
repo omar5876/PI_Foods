@@ -1,5 +1,5 @@
-require('dotenv').config()
-const axios = require('axios')
+/* require('dotenv').config()
+const axios = require('axios') */
 const {Diet} = require('../db')
 
 /* const getDietsApi = async() => {
