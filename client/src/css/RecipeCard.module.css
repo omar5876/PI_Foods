@@ -1,0 +1,9 @@
+.recipeCardContainer{
+    width: 30%;
+}
+
+@media (max-width: 1000px){
+    .recipeCardContainer{
+        width: 50%;
+    }
+}

@@ -8,7 +8,7 @@ const LandingPage = ({children}) => {
     console.log()
     return (
         <div className={s.landingPageContainer } >
-            <div className={`${s.childrenContainer} ${(location.pathname === '/' || location.pathname === '/Create')&& s.initialHeight}`}>
+            <div className={s.childrenContainer}>
                 {children}
             </div>
         </div>

@@ -6,8 +6,5 @@
     background-size: cover;
     background-attachment: fixed;
     position: relative;
-}
-
-.initialHeight{
-    height: 100vh;
+    min-height: 100vh;
 }

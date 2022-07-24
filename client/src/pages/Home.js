@@ -1,6 +1,10 @@
+import s from '../css/Home.module.css'
 import { useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { getRecipes } from '../redux/Actions'
+import RecipeCard from '../components/RecipeCard'
+
+
 const Home = () => {
 
     let dispatch = useDispatch()
@@ -11,9 +15,8 @@ const Home = () => {
         dispatch(getRecipes())
     }, [dispatch])
     return (
-        <div>
-            Home
-            {recipes.map(e => <div>{e.name}</div>)}
+        <div className={s.homeContainer}>
+            {recipes.map(e => <RecipeCard name={e.name} image={e.image} diets={e.diets}/>)}
         </div>
     )
 }
