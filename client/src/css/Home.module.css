@@ -4,10 +4,11 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 10;
+    padding-left: 1vw;
+    
 }
 
-@media (max-width: 900px){
+@media (max-width: 950px){
     .homeContainer{
         display: flex;
         flex-direction: column;

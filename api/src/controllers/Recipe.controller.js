@@ -51,7 +51,6 @@ const getRecipes = async (req, res) => {
     try {
         let recipesApi = await getRecipesApi()
         let recipesDB = await getRecipesDB()
-        console.log(recipesDB)
         res.send([...recipesApi, ...recipesDB])
     } catch (error) {
         console.log(error)

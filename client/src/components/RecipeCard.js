@@ -6,8 +6,14 @@ const RecipeCard = ({ name, image, diets }) => {
       <div className={s.recipeCardImgContainer}>
         <img src={image} />
       </div>
-      <h2>{name}</h2>
-      <span>{diets}</span>
+      <div className={s.recipeCardName}>
+        <h4>Name</h4>
+        <p>{name}</p>
+      </div>
+      <div className={s.recipeCardDiets}>
+      <h4>Diets</h4>
+      <p >{diets.join(', ').split('')}</p>
+      </div>
     </div>
   );
 };
