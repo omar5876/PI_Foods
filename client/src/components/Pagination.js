@@ -10,8 +10,8 @@ const Pagination = ({recipesPerPage, totalRecipes, actualPage, setActualPage}) =
             {actualPage > 1 && <div>Prev</div>}
             {numberOfPages.length && numberOfPages.map(p => {
                 return (
-                    <div>
-                        <a onClick={() => setActualPage(p)}>{p}</a>
+                    <div onClick={() => setActualPage(p)}>
+                        <span >{p}</span>
                     </div>
                 )
             })}
