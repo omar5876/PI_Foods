@@ -5,9 +5,17 @@ const Pagination = ({recipesPerPage, totalRecipes, actualPage, setActualPage}) =
     for(let i = 1; i <= Math.ceil(totalRecipes / recipesPerPage); i++){
         numberOfPages.push(i)
     }
+
+    const prev  = () => {
+        if(actualPage > 1) setActualPage(actualPage - 1)
+    }
+
+    const next = () => {
+        if(actualPage < numberOfPages.length) setActualPage(actualPage + 1)
+    }
     return(
         <div className={s.paginationContainer}>
-            {actualPage > 1 && <div>Prev</div>}
+            {actualPage > 1 && <div onClick={prev}>Prev</div>}
             {numberOfPages.length && numberOfPages.map(p => {
                 return (
                     <div onClick={() => setActualPage(p)}>
@@ -16,7 +24,7 @@ const Pagination = ({recipesPerPage, totalRecipes, actualPage, setActualPage}) =
                 )
             })}
 
-            {actualPage < numberOfPages.length && <div>Next</div>}
+            {actualPage < numberOfPages.length && <div onClick={next}>Next</div>}
         </div>
     )
 }
