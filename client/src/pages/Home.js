@@ -5,6 +5,7 @@ import { clean, getRecipes } from "../redux/Actions";
 import RecipeCard from "../components/RecipeCard";
 import Pagination from "../components/Pagination";
 import Searchbar from "../components/Searchbar";
+import Loading from "../components/Loading";
 
 const Home = () => {
   let dispatch = useDispatch();
@@ -24,6 +25,13 @@ const Home = () => {
   }, [dispatch]);
   return (
     <>
+      {!recipes.length?
+      <>
+      <Searchbar setActualPage={setActualPage} setSortRecipes={setSortRecipes}/>
+      <Loading/>
+      </>
+      :
+      <>
       <Searchbar setActualPage={setActualPage} setSortRecipes={setSortRecipes}/>
       <Pagination
         recipesPerPage={recipesPerPage}
@@ -43,6 +51,9 @@ const Home = () => {
         actualPage={actualPage}
         setActualPage={setActualPage}
       />
+      </>
+      
+    }
     </>
   );
 };
