@@ -7,6 +7,7 @@ export const GET_DIETS = 'getDiets'
 export const ORDER = 'order'
 export const FILTER = 'filter'
 export const CLEAN = 'clean'
+export const ORDER_BY_HEALTH_SCORE = 'orderByHealthScore'
 
 
 export const getRecipes = () => {
@@ -52,6 +53,13 @@ export const getDiets = () => {
 export const order = (order) => {
     return {
         type: ORDER,
+        payload: order
+    }
+}
+
+export const orderByHealthScore = (order) => {
+    return {
+        type: ORDER_BY_HEALTH_SCORE,
         payload: order
     }
 }

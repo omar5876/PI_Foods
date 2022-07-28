@@ -60,9 +60,10 @@ const getRecipes = async (req, res) => {
 const getRecipeByName = async(req, res) => {
     try {
         let {name} = req.query
+        console.log(name)
         let recipesApi = await getRecipesApi()
         let recipesDB = await getRecipesDB()
-        let recipeFound = [...recipesApi, ...recipesDB].filter(e => e.title.toLowerCase().includes(name.toLowerCase()))
+        let recipeFound = [...recipesApi, ...recipesDB].filter(e => e.name.toLowerCase().includes(name.toLowerCase()))
         if(!recipeFound.length) return res.send('Recipe not found')
         res.send(recipeFound)
     } catch (error) {
