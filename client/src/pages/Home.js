@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getRecipes } from "../redux/Actions";
 import RecipeCard from "../components/RecipeCard";
 import Pagination from "../components/Pagination";
+import Searchbar from "../components/Searchbar";
 
 const Home = () => {
   let dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Home = () => {
   }, [dispatch]);
   return (
     <>
+      <Searchbar/>
       <Pagination
         recipesPerPage={recipesPerPage}
         totalRecipes={recipes.length}
@@ -29,7 +31,7 @@ const Home = () => {
       <div className={s.homeContainer}>
         {recipesPage &&
           recipesPage.map((e) => (
-            <RecipeCard name={e.name} image={e.image} diets={e.diets} />
+            <RecipeCard key={e.id} name={e.name} image={e.image} diets={e.diets} />
           ))}
       </div>
       <Pagination

@@ -18,7 +18,7 @@ function App() {
             <Navbar/>
             <Home/>
           </Route>
-          <Route exact path={'/Details'}>
+          <Route exact path={'/Details/:id'}>
             <Navbar/>
             <DetailRecipe/>
           </Route>

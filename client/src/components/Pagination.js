@@ -16,9 +16,9 @@ const Pagination = ({recipesPerPage, totalRecipes, actualPage, setActualPage}) =
     return(
         <div className={s.paginationContainer}>
             {actualPage > 1 && <div onClick={prev}>Prev</div>}
-            {numberOfPages.length && numberOfPages.map(p => {
+            {numberOfPages.length && numberOfPages.map((p, i) => {
                 return (
-                    <div onClick={() => setActualPage(p)}>
+                    <div key={i} onClick={() => setActualPage(p)}>
                         <span >{p}</span>
                     </div>
                 )

@@ -29,7 +29,9 @@ const getDiets = async(req, res) => {
             {name:'fodmap friendly'},
             {name:'vegetarian'}
         ]
-        await Diet.bulkCreate(dietsApi)
+        //await Diet.bulkCreate(dietsApi)
+        let insertDiets = dietsApi.map(async(e) => await Diet.findOrCreate({where: e}) )
+        await Promise.all(insertDiets)
         let dietsDB = await Diet.findAll()
         res.send(dietsDB)
     } catch (error) {

@@ -9,6 +9,9 @@
 .paginationContainer div{
     width: 7%;
     text-align: center;
+    border-radius: 10px;
+    font-size: larger;
+    padding: 5px;
 }
 
 .paginationContainer div:hover{
