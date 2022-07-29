@@ -20,7 +20,7 @@ const getDiets = async(req, res) => {
             {name:'gluten free'}, 
             {name:'dairy free'}, 
             {name:'lacto ovo vegetarian'}, 
-            {name:'vagan'}, 
+            {name:'vegan'}, 
             {name:'paleolithic'}, 
             {name:'primal'}, 
             {name:'whole 30'},

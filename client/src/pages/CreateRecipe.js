@@ -1,6 +1,14 @@
+import s from '../css/CreateRecipe.module.css'
+
 const CreateRecipe = () => {
     return (
-        <div>Create Recipe</div>
+        <div className={s.createRecipeContainer}>
+            Create Recipe
+            <form>
+                <label>Name</label>
+                <input type={'text'}/>
+            </form>
+        </div>
     )
 }
 

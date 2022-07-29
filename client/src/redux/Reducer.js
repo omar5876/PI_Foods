@@ -67,7 +67,7 @@ const reducer = (state=initialState, action) => {
                 getRecipes: totalRecipes2
             }
         case FILTER:
-                let filterRecipes = state.allRecipes.filter(e => e.diets.find(i => i === action.payload))
+                let filterRecipes = state.allRecipes.filter(e => e.diets.find(i => i.includes(action.payload) ))
             return {
                 ...state,
                 getRecipes: filterRecipes

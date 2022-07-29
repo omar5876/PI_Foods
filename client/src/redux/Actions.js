@@ -32,11 +32,16 @@ export const getRecipesById = (id) => {
 
 export const getRecipeByName = (name) => {
     return async (dispatch) => {
-        let recipeByName = (await axios.get(`http://localhost:3001/recipes/name?name=${name}`)).data
-        return dispatch({
-            type: GET_RECIPES_BY_NAME,
-            payload: recipeByName
-        })
+        try {
+            
+            let recipeByName = (await axios.get(`http://localhost:3001/recipes/name?name=${name}`)).data
+            return dispatch({
+                type: GET_RECIPES_BY_NAME,
+                payload: recipeByName
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
