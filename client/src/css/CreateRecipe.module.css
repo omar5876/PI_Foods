@@ -1,0 +1,14 @@
+.createRecipeContainer{
+    width: 100%;
+    min-height: 100vh;
+}
+
+.createRecipeContainer form{
+    display: flex;
+    flex-direction: column;
+}
+
+.createRecipeContainer form input,
+.createRecipeContainer form textarea{
+    color: black;
+}
