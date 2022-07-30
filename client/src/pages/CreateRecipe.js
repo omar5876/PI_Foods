@@ -75,13 +75,20 @@ const CreateRecipe = () => {
                         </div>}
                     </div>
 
-                {diets.length && (
+                {!!diets.length && (
                     <>
                     <label>Diets</label>
                     <select>
                         <option  disabled selected>Choose a Type of Diet</option>
                         {diets.map((e, k) => <option key={k} value={e.name}>{e.name}</option>)}
                     </select>
+                    {
+                        !!input.diets.length &&
+                        <div>
+                            {input.diets.map((e, k) => <span key={k}>{e}</span>)}
+                        </div>
+                    }
+
                     </>
                 )}
                 <input type='submit' value='Create Recipe'/>
