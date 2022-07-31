@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { clean, getRecipesById } from "../redux/Actions";
+import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 
 const DetailRecipe = () => {
@@ -26,7 +27,7 @@ const DetailRecipe = () => {
     {!detailRecipe.name? <Loading/>:
     <div className={s.detailRecipeContainer}>
       {typeof detailRecipe.id === "string" && <button>Delete</button>}
-      {typeof detailRecipe.id === "string" && <button>Update</button>}
+      {typeof detailRecipe.id === "string" && <Link to={`/Update/${detailRecipe.id}`}><button>Update</button></Link>}
       <div className={s.detailRecipeImgContainer}>
         <img src={detailRecipe.image} alt={detailRecipe.name} />
       </div>

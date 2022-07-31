@@ -5,6 +5,7 @@ import DetailRecipe from "./pages/DetailRecipe";
 import Home from "./pages/Home";
 import InitialPage from "./pages/InitialPage";
 import LandingPage from "./pages/LandingPage";
+import UpadateRecipe from "./pages/UpdateRecipe";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
           <Route exact path={'/Create'}>
             <Navbar/>
             <CreateRecipe/>
+          </Route>
+          <Route exact path={'/Update/:id'}>
+            <Navbar/>
+            <UpadateRecipe/>
           </Route>
         </Switch>
       </LandingPage>
