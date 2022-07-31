@@ -99,7 +99,6 @@ const createRecipe = async (req, res) => {
         let {name, summary, healthScore, image, steps, diets} = req.body
         if(!name || !summary) return res.send('Data is missing')
         let newRecipe = await Recipe.create({name, summary, healthScore/* : parseInt(healthScore) */, image, steps})
-        console.log('creadoo')
         let dietsPromise =  diets.map(async(e) => await Diet.findOne({where:{name: e}}))
         let dietsFinal = await Promise.all(dietsPromise)
         newRecipe.addDiets(dietsFinal)

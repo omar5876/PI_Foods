@@ -3,16 +3,21 @@ import {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { getDiets } from '../redux/Actions'
 import axios from 'axios'
+import {useHistory} from 'react-router-dom'
+import { validate } from '../functions/functions'
 
 const CreateRecipe = () => {
     let [objectStep, setObjectStep] = useState({number: 0, step: ''})
     let [arraySteps, setArraySteps] = useState([])
     let [input, setInput] = useState({name: '', summary: '', image: '', healthScore: 0, steps: arraySteps, diets: []})
+    let [error, setError] = useState({})
 
     let diets = useSelector(state => state.getDiets)
     console.log(diets)
 
     let dispatch = useDispatch()
+
+    let history = useHistory()
 
     const handleChange = (e) => {
         setInput({
@@ -49,7 +54,9 @@ const CreateRecipe = () => {
             e.preventDefault()
             axios.post('http://localhost:3001/recipes', input)
             .then(res => alert('Recipe Created'))
-            
+
+            setInput({name: '', summary: '', image: '', healthScore: 0, steps: arraySteps, diets: []})
+            history.push('/Home')
         } catch (error) {
             alert("It coudn't be created")
         }
