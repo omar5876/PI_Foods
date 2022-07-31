@@ -103,6 +103,8 @@ const UpdateRecipe = () => {
     useEffect(() => {
         dispatch(getDiets())
         dispatch(getRecipesById(id))
+
+        
     }, [dispatch, id])
     
     return (
