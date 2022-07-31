@@ -17,7 +17,7 @@ const getRecipesApi = async () => {
                 diets: e.diets,
                 summary: e.summary,
                 healthScore: e.healthScore,
-                steps: e.analyzedInstructions[0]?.steps.map(i => ({number: i.number, step: i.step}))
+                steps: e.analyzedInstructions[0]?.steps.map(i => ({number: Number(i.number), step: i.step}))
             }
         })
     
@@ -95,10 +95,12 @@ const getRecipeById = async (req, res) => {
 
 const createRecipe = async (req, res) => {
     try {
+        console.log(req.body)
         let {name, summary, healthScore, image, steps, diets} = req.body
         if(!name || !summary) return res.send('Data is missing')
-        let newRecipe = await Recipe.create({name, summary, healthScore, image, steps})
-        let dietsPromise = await diets.map(async(e) => await Diet.findOne({where:{name: e}}))
+        let newRecipe = await Recipe.create({name, summary, healthScore/* : parseInt(healthScore) */, image, steps})
+        console.log('creadoo')
+        let dietsPromise =  diets.map(async(e) => await Diet.findOne({where:{name: e}}))
         let dietsFinal = await Promise.all(dietsPromise)
         newRecipe.addDiets(dietsFinal)
         

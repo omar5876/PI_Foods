@@ -2,6 +2,7 @@ import s from '../css/CreateRecipe.module.css'
 import {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { getDiets } from '../redux/Actions'
+import axios from 'axios'
 
 const CreateRecipe = () => {
     let [objectStep, setObjectStep] = useState({number: 0, step: ''})
@@ -34,13 +35,33 @@ const CreateRecipe = () => {
         setObjectStep({number: 0, step: ''})
     }
 
+    const handleSelectDiet = (e) => {
+        if(!input.diets.includes(e.target.value)){
+            setInput({
+                ...input,
+                diets: [...input.diets, e.target.value]
+            })
+        }
+    }
+
+    const handleSubmit = (e) => {
+        try {
+            e.preventDefault()
+            axios.post('http://localhost:3001/recipes', input)
+            .then(res => alert('Recipe Created'))
+            
+        } catch (error) {
+            alert("It coudn't be created")
+        }
+    }
+
     useEffect(() => {
         dispatch(getDiets())
     }, [dispatch])
     
     return (
         <div className={s.createRecipeContainer}>
-            <form>
+            <form >
                 <label>Name</label>
                 <input type={'text'} placeholder='write a name' required name='name' value={input.name} onChange={handleChange}/>
                 <label>Summary</label>
@@ -78,20 +99,20 @@ const CreateRecipe = () => {
                 {!!diets.length && (
                     <>
                     <label>Diets</label>
-                    <select>
+                    <select onChange={handleSelectDiet}>
                         <option  disabled selected>Choose a Type of Diet</option>
                         {diets.map((e, k) => <option key={k} value={e.name}>{e.name}</option>)}
                     </select>
                     {
                         !!input.diets.length &&
                         <div>
-                            {input.diets.map((e, k) => <span key={k}>{e}</span>)}
+                            {input.diets.map((e, k) => <div key={k}>{e}</div>)}
                         </div>
                     }
 
                     </>
                 )}
-                <input type='submit' value='Create Recipe'/>
+                <input type='submit' value='Create Recipe' onClick={handleSubmit}/>
 
             </form>
         </div>
