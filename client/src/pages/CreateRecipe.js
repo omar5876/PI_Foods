@@ -8,8 +8,7 @@ import { validate } from '../functions/functions'
 
 const CreateRecipe = () => {
     let [objectStep, setObjectStep] = useState({number: 0, step: ''})
-    let [arraySteps, setArraySteps] = useState([])
-    let [input, setInput] = useState({name: '', summary: '', image: '', healthScore: 0, steps: arraySteps, diets: []})
+    let [input, setInput] = useState({name: '', summary: '', image: '', healthScore: 0, steps: [], diets: []})
     let [error, setError] = useState({})
 
     let diets = useSelector(state => state.getDiets)
@@ -24,6 +23,11 @@ const CreateRecipe = () => {
             ...input,
             [e.target.name]: e.target.value
         })
+
+        setError(validate({
+            ...input,
+            [e.target.name]: e.target.value
+        }))
     }
 
     const handleChangeObjectStep = (e) => {
@@ -34,10 +38,25 @@ const CreateRecipe = () => {
     }
 
     const addStep = () => {
+        
         let newStep = {number: objectStep.number, step: objectStep.step}
-        arraySteps.push(newStep)
-        console.log(arraySteps)
-        setObjectStep({number: 0, step: ''})
+        if(!newStep.number || !newStep.step || !!input.steps.find(e => e.number === newStep.number)){
+            alert('step is empty or it already exist')
+        }else{
+
+            setInput({
+                ...input,
+                steps: [...input.steps, newStep]
+            })
+            setObjectStep({number: 0, step: ''})
+        }
+    }
+
+    const deleteStep = (number) => {
+        setInput({
+            ...input,
+            steps: input.steps.filter(e => e.number !== number)
+        })
     }
 
     const handleSelectDiet = (e) => {
@@ -49,14 +68,24 @@ const CreateRecipe = () => {
         }
     }
 
+    const deleteDiet = (name) => {
+        setInput({
+            ...input,
+            diets: input.diets.filter(e => e !== name)
+        })
+    }
+
     const handleSubmit = (e) => {
         try {
             e.preventDefault()
-            axios.post('http://localhost:3001/recipes', input)
-            .then(res => alert('Recipe Created'))
+            if(input.name && input.summary && input.image && !!input.diets.length && !!input.steps.length){
 
-            setInput({name: '', summary: '', image: '', healthScore: 0, steps: arraySteps, diets: []})
-            history.push('/Home')
+                axios.post('http://localhost:3001/recipes', input)
+                .then(res => alert('Recipe Created'))
+    
+                setInput({name: '', summary: '', image: '', healthScore: 0, steps: [], diets: []})
+                history.push('/Home')
+            }else alert('Some fields are missing')
         } catch (error) {
             alert("It coudn't be created")
         }
@@ -71,16 +100,20 @@ const CreateRecipe = () => {
             <form >
                 <label>Name</label>
                 <input type={'text'} placeholder='write a name' required name='name' value={input.name} onChange={handleChange}/>
+                {!!error.name&& <span className={s.dangerAlert}>{error.name}</span>}
                 <label>Summary</label>
                 <textarea type={'text'} placeholder='write a name' required name='summary' value={input.summary} onChange={handleChange}/>
+                {!!error.summary&& <span className={s.dangerAlert}>{error.summary}</span>}
                 <label>Image</label>
                 <input type={'text'} placeholder='Put an url' required name='image' value={input.image} onChange={handleChange}/>
+                {!!error.image&& <span className={s.dangerAlert}>{error.image}</span>}
                 <label>Health Score</label>
-                <input type={'number'} placeholder='write a name' name='healthScore' value={input.healthScore} onChange={handleChange}/>
+                <input type={'number'} placeholder='Put a number' name='healthScore' min={0} value={input.healthScore} onChange={handleChange}/>
+                {!!error.healthScore&& <span className={s.dangerAlert}>{error.healthScore}</span>}
                 <label>Steps</label>
                     <div>
                         <label>Number</label>
-                        <input type={'number'} name='number' value={objectStep.number} onChange={ handleChangeObjectStep}/>
+                        <input type={'number'} name='number' min={1} value={objectStep.number} onChange={ handleChangeObjectStep}/>
                         <label>Step</label>
                         <textarea type={'text'}  name='step' value={objectStep.step} onChange={handleChangeObjectStep}/>
                         <button type='button' onClick={addStep}>Add Step</button>
@@ -96,7 +129,9 @@ const CreateRecipe = () => {
                                         <tr>
                                             <th>Step</th>
                                             <td>{e.step}</td>
+                                            <button type='button' onClick={() => deleteStep(e.number)}>X</button>
                                         </tr>
+                                        
                                     </table>
                                 )
                             })}    
@@ -113,7 +148,8 @@ const CreateRecipe = () => {
                     {
                         !!input.diets.length &&
                         <div>
-                            {input.diets.map((e, k) => <div key={k}>{e}</div>)}
+                            <div>Choosen Diets:</div>
+                            {input.diets.map((e, k) => <div key={k}>{e}<button type={'button'}onClick={() => deleteDiet(e)}>X</button></div>)}
                         </div>
                     }
 
