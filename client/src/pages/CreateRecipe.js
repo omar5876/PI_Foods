@@ -76,19 +76,19 @@ const CreateRecipe = () => {
     }
 
     const handleSubmit = (e) => {
-        try {
             e.preventDefault()
             if(input.name && input.summary && input.image && !!input.diets.length && !!input.steps.length){
 
                 axios.post('http://localhost:3001/recipes', input)
-                .then(res => alert('Recipe Created'))
+                .then(res => {
+                    alert('Recipe Created')
+                    setInput({name: '', summary: '', image: '', healthScore: 0, steps: [], diets: []})
+                    history.push('/Home')
+                })
+                .catch(error => alert("It coudn't be created"))
     
-                setInput({name: '', summary: '', image: '', healthScore: 0, steps: [], diets: []})
-                history.push('/Home')
             }else alert('Some fields are missing')
-        } catch (error) {
-            alert("It coudn't be created")
-        }
+        
     }
 
     useEffect(() => {
