@@ -76,7 +76,7 @@ const DetailRecipe = () => {
       </div>
       {detailRecipe.hasOwnProperty('steps') && <div>
         <h4>Steps</h4>
-        {detailRecipe.steps.map((e, k) => <div key={k}><h5>Step {e.number}</h5><p>{e.step}</p></div>)}
+        {detailRecipe.steps.map((e, k) => <div key={k}><h5>Step {e.number}:</h5><p>{e.step}</p></div>)}
         </div>}
     </div>
     }
