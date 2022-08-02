@@ -40,8 +40,8 @@ const DetailRecipe = () => {
     <>
     {!detailRecipe.name? <Loading/>:
     <div className={s.detailRecipeContainer}>
-      {typeof detailRecipe.id === "string" && <button onClick={() => deleteRecipe(detailRecipe.id)}>Delete</button>}
-      {typeof detailRecipe.id === "string" && <Link to={`/Update/${detailRecipe.id}`}><button>Update</button></Link>}
+      {typeof detailRecipe.id === "string" && <button className={`${s.detailRecipeBtn} ${s.deleteBtn}`} onClick={() => deleteRecipe(detailRecipe.id)}>Delete</button>}
+      {typeof detailRecipe.id === "string" && <Link to={`/Update/${detailRecipe.id}`}><button className={`${s.detailRecipeBtn} ${s.updateBtn}`}>Update</button></Link>}
       <div className={s.detailRecipeImgContainer}>
         <img src={detailRecipe.image} alt={detailRecipe.name} />
       </div>
