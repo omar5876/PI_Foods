@@ -111,7 +111,7 @@ const CreateRecipe = () => {
                 <input type={'number'} placeholder='Put a number' name='healthScore' min={0} value={input.healthScore} onChange={handleChange}/>
                 {!!error.healthScore&& <span className={s.dangerAlert}>{error.healthScore}</span>}
                 <label>Steps</label>
-                    <div>
+                    <div className={s.stepsContainer}>
                         <label>Number</label>
                         <input type={'number'} name='number' min={1} value={objectStep.number} onChange={ handleChangeObjectStep}/>
                         <label>Step</label>
@@ -147,7 +147,7 @@ const CreateRecipe = () => {
                     </select>
                     {
                         !!input.diets.length &&
-                        <div>
+                        <div className={s.choosenDiets}>
                             <div>Choosen Diets:</div>
                             {input.diets.map((e, k) => <div key={k}>{e}<button type={'button'}onClick={() => deleteDiet(e)}>X</button></div>)}
                         </div>

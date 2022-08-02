@@ -6,7 +6,7 @@ const {Recipe, Diet} = require('../db')
 const getRecipesApi = async () => {
     try {
         
-        let recipesApi = (await axios.get('https://558dfbed-2c18-4f89-b65b-538f13b0299e.mock.pstmn.io/recipes')).data.results
+        let recipesApi = (await axios.get('https://apimocha.com/omar.recipes/recipes')).data.results
     
         let recipesApiFilter = recipesApi.map(e => {
             return {
