@@ -16,6 +16,7 @@ const Searchbar = ({setActualPage, setSortRecipes}) => {
     const searchRecipe = () => {
       if(name)dispatch(getRecipeByName(name))
       else alert('Search field is empty')
+      setActualPage(1)
       setName('')
     }
 

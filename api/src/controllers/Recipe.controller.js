@@ -141,11 +141,24 @@ const updateRecipe = async (req, res) => {
         res.send("It haven't been updated")
     }
 }
+
+
+const getRecipesDbPractice = async(req, res) => {
+
+    try {
+        let recipesDBPractice = await Recipe.findAll()
+        res.send(recipesDBPractice)
+    } catch (error) {
+        console.log(error)
+        res.send('they havent found')
+    }
+}
 module.exports = {
     getRecipes,
     getRecipeByName,
     getRecipeById,
     createRecipe,
     deleteRecipe,
-    updateRecipe
+    updateRecipe,
+    getRecipesDbPractice
 }
