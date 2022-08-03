@@ -1,0 +1,9 @@
+.loadingContainer{
+    width: 300px;
+    min-height: 300px;
+    background-color: red;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

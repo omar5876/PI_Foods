@@ -37,13 +37,13 @@ const reducer = (state=initialState, action) => {
         case ORDER:
             let totalRecipes = state.getRecipes;
             if(action.payload === "asc") totalRecipes.sort((a, b) => {
-                if(a.name > b.name) return 1
-                if(a.name < b.name) return -1
+                if(a.name.toLowerCase() > b.name.toLowerCase()) return 1
+                if(a.name.toLowerCase() < b.name.toLowerCase()) return -1
                 else return 0
             })
             else totalRecipes.sort((a,b) => {
-                if(a.name > b.name) return -1
-                if(a.name < b.name) return 1
+                if(a.name.toLowerCase() > b.name.toLowerCase()) return -1
+                if(a.name.toLowerCase() < b.name.toLowerCase()) return 1
                 else return 0
             })
             return {

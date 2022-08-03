@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     padding-left: 1vw;
+    min-height: 75vh;
     
 }
 
@@ -13,4 +14,25 @@
         display: flex;
         flex-direction: column;
     }
+}
+
+.recipeNotFoundContainer{
+    width: 40%;
+    height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: xx-large;
+}
+.recipeNotFoundContainer button{
+    width: 40%;
+    height: 75%;
+    background-color: rgba(1, 1, 1, .5);
+    box-shadow: 1px 1px 10px white;
+    border-radius: 10px;
+}
+.recipeNotFoundContainer button:hover{
+    transform: scale(1.1);
+    box-shadow: 1px 1px 20px white;
+    cursor: pointer;
 }
